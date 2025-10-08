@@ -9,6 +9,9 @@ exports.getLessonBycourses = async(req, res) => {
         if (!course) {
             return res.status(404).json({ error: 'Khóa học không tồn tại' });
         }
+        const lessons = await Lesson.findAll({
+            where: courseId
+        });
         res.json(lessons);
         } catch (err) {
             res.status(500).json({error: 'Loi lay danh sach bai giang'})
